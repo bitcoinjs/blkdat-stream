@@ -46,17 +46,17 @@ module.exports = function BlkDatStream() {
 
       // read the block
       var block = buffer.slice(offset, offset + needed)
-      offset += needed
-      remaining -= needed
-      needed = 0
-
-      // update cursor information
-      buffer = buffer.slice(offset)
-      len = buffer.length
-      offset = 0
 
       // process block
       this.queue(block)
+
+      // update cursor information
+      offset += needed
+      remaining -= needed
+      needed = 0
+      buffer = buffer.slice(offset)
+      len = buffer.length
+      offset = 0
     }
 
     // reset buffer
