@@ -57,8 +57,10 @@ module.exports = function BlkDatStream() {
       offset = 0
     }
 
-    // reset buffer
-    buffer = buffer.slice(offset)
-    len = buffer.length
+    // truncate Buffer if magic header was read
+    if (needed !== 0) {
+      buffer = buffer.slice(offset)
+      len = buffer.length
+    }
   })
 }
