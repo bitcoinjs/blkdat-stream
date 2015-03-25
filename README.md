@@ -1,2 +1,1 @@
-# blkdat-parser
-blkdat-parser
+# blkdat-stream
