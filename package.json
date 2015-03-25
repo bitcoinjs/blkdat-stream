@@ -1,6 +1,6 @@
 {
   "name": "blkdat-stream",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A streamline blk*.dat stream module, useful for parsing the Bitcoin blockchain",
   "main": "index.js",
   "directories": {
