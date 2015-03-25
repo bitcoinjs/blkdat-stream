@@ -24,11 +24,11 @@ glob(process.env.BLOCKS_DIR, function (err, fileNames) {
 
   var bds = new BlkDatStream()
   var j = 0
-  bds.on('data', function(data) {
+  bds.on('data', function(blockData) {
     console.log('>> Read block (', j, ')')
     j++
 
-	// ... parse the block data here
+    // ... now, parse the block data buffer
   })
 
   cs.pipe(bds)
