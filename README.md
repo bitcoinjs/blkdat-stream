@@ -13,7 +13,7 @@ var glob = require('glob')
 var CombinedStream = require('combined-stream')
 var BlkDatStream = require('../')
 
-glob(process.env.BLOCKS_DIR, function (err, fileNames) {
+glob(process.env.BLOCKS_DIR + '/blk*.dat', function (err, fileNames) {
   if (err) throw err
 
   var cs = new CombinedStream()
