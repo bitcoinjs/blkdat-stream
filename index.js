@@ -10,7 +10,7 @@ module.exports = function BlkDatStream() {
     remaining += data.length
     buffers.push(data)
 
-    // do we have a header? and do we have enough data?
+    // early exit if we have a header, but not enough data
     if (needed !== 0 && remaining < needed) return
 
     // merge buffers
