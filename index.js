@@ -3,28 +3,28 @@ var through = require('through')
 module.exports = function BlkDatStream() {
   var buffers = []
   var buffer = new Buffer(0)
-  var len = 0
+  var remaining = 0
   var needed = 0
 
   return through(function write(data) {
-    len += data.length
+    remaining += data.length
     buffers.push(data)
 
     // do we have a header? and do we have enough data?
-    if (needed !== 0 && len < needed) return
+    if (needed !== 0 && remaining < needed) return
 
     // merge buffers
-    buffer = Buffer.concat([buffer].concat(buffers), len)
+    buffer = Buffer.concat([buffer].concat(buffers), remaining)
     buffers = []
 
     var offset = 0
 
     // do we [still] have enough data?
-    while (len >= needed) {
+    while (remaining >= needed) {
       // do we need to parse a magic header?
       if (needed === 0) {
         // do we have enough for a magic header?
-        if (len < 8) break
+        if (remaining < 8) break
 
         // read the magic header (magic number, block length)
         var magicInt = buffer.readUInt32LE(0)
@@ -36,7 +36,7 @@ module.exports = function BlkDatStream() {
 
         // now, block length is what is needed
         needed = blockLength
-        len -= 8
+        remaining -= 8
         offset = 8
 
         // and loop
@@ -51,14 +51,14 @@ module.exports = function BlkDatStream() {
 
       // update cursor information
       buffer = buffer.slice(offset + needed)
-      len -= needed
+      remaining -= needed
       needed = 0
     }
 
     // truncate Buffer if magic header was read
     if (needed !== 0) {
       buffer = buffer.slice(offset)
-      len = buffer.length
+      remaining = buffer.length
     }
   })
 }
