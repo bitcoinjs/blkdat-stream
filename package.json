@@ -1,0 +1,42 @@
+{
+  "name": "blkdat-stream",
+  "version": "1.0.0",
+  "description": "A streamline blk*.dat stream module, useful for parsing the Bitcoin blockchain",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dcousens/blkdat-stream.git"
+  },
+  "keywords": [
+    "blockchain",
+    "bitcoin",
+    "block",
+    "blkdat",
+    "dat",
+    "blk*.dat",
+    "chain",
+    "parser",
+    "streams",
+    "streaming",
+    "stream"
+  ],
+  "author": "Daniel Cousens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dcousens/blkdat-stream/issues"
+  },
+  "homepage": "https://github.com/dcousens/blkdat-stream",
+  "dependencies": {
+    "through": "^2.3.6"
+  },
+  "devDependencies": {
+    "combined-stream": "0.0.7",
+    "glob": "^5.0.3"
+  }
+}
