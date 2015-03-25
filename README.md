@@ -11,7 +11,7 @@ var fs = require('fs')
 var glob = require('glob')
 
 var CombinedStream = require('combined-stream')
-var BlkDatStream = require('../')
+var BlkDatStream = require('blkdat-stream')
 
 glob(process.env.BLOCKS_DIR + '/blk*.dat', function (err, fileNames) {
   if (err) throw err
