@@ -1,6 +1,6 @@
 # blkdat-stream
 
-A streamline blk\*.dat stream module, useful for parsing the Bitcoin blockchain
+A lite blk\*.dat streaming module, useful for parsing the Bitcoin blockchain
 
 
 ### Example
