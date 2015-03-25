@@ -19,8 +19,7 @@ module.exports = function BlkDatStream() {
 
     var offset = 0
 
-    // do we [still] have enough data?
-    while (remaining >= needed) {
+    do {
       // do we need to parse a magic header?
       if (needed === 0) {
         // do we have enough for a magic header?
@@ -53,7 +52,9 @@ module.exports = function BlkDatStream() {
       buffer = buffer.slice(offset + needed)
       remaining -= needed
       needed = 0
-    }
+
+    // do we [still] have enough data?
+    } while (remaining >= needed)
 
     // truncate Buffer if magic header was read
     if (needed !== 0) {
