@@ -18,14 +18,13 @@ module.exports = function BlkDatStream() {
     buffers = []
 
     var offset = 0
-    var remaining = len
 
     // do we [still] have enough data?
-    while (remaining >= needed) {
+    while (len >= needed) {
       // do we need to parse a magic header?
       if (needed === 0) {
         // do we have enough for a magic header?
-        if (remaining < 8) break
+        if (len < 8) break
 
         // read the magic header (magic number, block length)
         var magicInt = buffer.readUInt32LE(offset)
@@ -37,7 +36,7 @@ module.exports = function BlkDatStream() {
 
         // now, block length is what is needed
         needed = blockLength
-        remaining -= 8
+        len -= 8
         offset += 8
 
         // and loop
@@ -52,10 +51,9 @@ module.exports = function BlkDatStream() {
 
       // update cursor information
       offset += needed
-      remaining -= needed
+      len -= needed
       needed = 0
       buffer = buffer.slice(offset)
-      len = buffer.length
       offset = 0
     }
 
