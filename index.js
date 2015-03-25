@@ -42,7 +42,7 @@ module.exports = function BlkDatStream() {
       }
 
       // read the block
-      var block = buffer.slice(8, blockLength)
+      var block = buffer.slice(8, needed)
 
       // process block
       this.queue(block)
