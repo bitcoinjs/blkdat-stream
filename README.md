@@ -1,5 +1,7 @@
 # blkdat-stream
 
+[![Version](http://img.shields.io/npm/v/blkdat-stream.svg)](https://www.npmjs.org/package/blkdat-stream)
+
 A lite blk\*.dat streaming module, useful for parsing the Bitcoin blockchain
 
 
