@@ -33,8 +33,7 @@ module.exports = function BlkDatStream() {
           throw new Error('Unexpected data')
         }
 
-        // block length is what is needed further
-        // but we don't truncate, so we also need the magic header
+        // include the magic header
         needed = 8 + blockLength
 
         // and loop
