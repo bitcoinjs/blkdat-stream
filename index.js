@@ -1,6 +1,6 @@
 var through = require('through')
 
-module.exports = function BlkDatStream() {
+module.exports = function BlkDatStream () {
   var buffers = []
   var buffer = new Buffer(0)
 
@@ -8,7 +8,7 @@ module.exports = function BlkDatStream() {
   var remaining = 0
   var needed = 0
 
-  return through(function write(data) {
+  return through(function write (data) {
     remaining += data.length
     buffers.push(data)
 
