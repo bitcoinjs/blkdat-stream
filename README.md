@@ -8,33 +8,14 @@ A lite blk\*.dat streaming module, useful for parsing the Bitcoin blockchain
 ### Example
 
 ``` javascript
+// usage: cat blk*.dat | node this.js
 
-var fs = require('fs')
-var glob = require('glob')
+var BlockStream = require('blkdat-stream')
+var blockStream = new BlockStream()
 
-var CombinedStream = require('combined-stream')
-var BlkDatStream = require('blkdat-stream')
-
-glob(process.env.BLOCKS_DIR + '/blk*.dat', function (err, fileNames) {
-  if (err) throw err
-
-  var cs = new CombinedStream()
-
-  fileNames.forEach(function (fileName) {
-    cs.append(fs.createReadStream(fileName, { mode: '0444' }))
-  })
-
-  var bds = new BlkDatStream()
-  var j = 0
-  bds.on('data', function (blockData) {
-    console.log('>> Read block (', j, ')')
-    j++
-
-    // ... now, parse the block data buffer
-  })
-
-  cs.pipe(bds)
+process.stdin.pipe(new BlockStream()).on('data', function (blockBuffer) {
+	// ... now, parse the block data buffer (is an atomic block)
 })
 ```
 
-To parse the returned block data, use a library such as [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib) or [bitcore](https://github.com/bitpay/bitcore)
+To parse the returned block data, use a library such as [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib) or [bitcore](https://github.com/bitpay/bitcore).
