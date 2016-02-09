@@ -11,7 +11,7 @@ A lite blk\*.dat streaming module, useful for parsing the Bitcoin blockchain
 // usage: cat blk*.dat | node this.js
 
 var BlockStream = require('blkdat-stream')
-var blockStream = new BlockStream()
+var blockStream = new BlockStream() // for testnet3: new BlockStream(0x0709110b)
 
 process.stdin.pipe(new BlockStream()).on('data', function (blockBuffer) {
 	// ... now, parse the block data buffer (is an atomic block)
