@@ -4,6 +4,8 @@
 
 A lite blk\*.dat streaming module, useful for parsing the Bitcoin blockchain
 
+**Note**: For a high performance C++ parser, see https://github.com/dcousens/fast-dat-parser
+
 
 ### Example
 
