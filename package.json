@@ -7,7 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "standard": "standard",
+    "test": "npm run standard && npm run unit",
+    "unit": "echo \"Error: no test specified\""
   },
   "repository": {
     "type": "git",
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "combined-stream": "0.0.7",
-    "glob": "^5.0.3"
+    "glob": "^5.0.3",
+    "standard": "^6.0.4"
   }
 }

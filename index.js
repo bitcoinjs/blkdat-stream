@@ -27,13 +27,12 @@ module.exports = function BlkDatStream (blkMagicInt) {
         // do we have enough for a magic header?
         if (remaining < 8) break
 
-        // read the magic header (magic number, block length)
+        // read magic number from the magic header
         var magicInt = buffer.readUInt32LE(0)
-        blockLength = buffer.readUInt32LE(4)
+        if (magicInt !== blkMagicInt) throw new Error('Unexpected data')
 
-        if (magicInt !== blkMagicInt) {
-          throw new Error('Unexpected data')
-        }
+        // read block length from the magic header
+        blockLength = buffer.readUInt32LE(4)
 
         // include the magic header
         needed = 8 + blockLength
